@@ -103,7 +103,8 @@ class Game:
     def reset(self):
         self.snake = Snake(self.surface, 1)
         self.apple = Apple(self.surface)
-    
+        game.run()
+
     def game_over(self):
         pause = True
         while pause:
@@ -113,21 +114,21 @@ class Game:
                         pause = False
                     if event.key == pygame.K_RETURN:
                         self.reset()
-                        game.run()
+                        
             self.surface.fill(MYCOLOR2)
             font1 = pygame.font.SysFont("arial", 40)
-            line1 = font1.render(f"GAME OVER", True, RED)
+            line1 = font1.render(f"GAME OVER", True, GREEN)
             self.surface.blit(line1, [(SCREEN_WIDTH/2-150), (SCREEN_HEIGHT/2-100)])
-            font2 = pygame.font.SysFont("comicsunsms", 30)
-            line2 = font2.render("Press RETURN for RESTART or ESC for EXIT", True, RED)
-            self.surface.blit(line2, [SCREEN_WIDTH/2-200, SCREEN_HEIGHT/2])
+            font2 = pygame.font.SysFont("inconsolata", 30)
+            line2 = font2.render("Press RETURN for RESTART or ESC for EXIT", True, WHITE)
+            self.surface.blit(line2, [SCREEN_WIDTH/2-250, SCREEN_HEIGHT/2])
 
             pygame.display.update()
 
 
     def run(self):
-        running = True
 
+        running = True
         while running:
             self.surface.fill(MYCOLOR1)
             for event in pygame.event.get() :
@@ -172,14 +173,20 @@ class Game:
                                 self.snake.x[i], self.snake.y[i]):
                     print("Collisione con se stesso")
                     running = False
-
+            #Collisione fuori limite
+            if self.snake.x[0] < 0 or self.snake.x[0] > SCREEN_WIDTH-SIZE:
+                running = False
+            if self.snake.y[0] < 0 or self.snake.y[0] > SCREEN_HEIGHT-SIZE:
+                running = False
 
             #punteggio
             score = self.font.render(f"Score : {self.snake.length}", True, WHITE)
             self.surface.blit(score, (800,10))
+            pygame.draw.rect(self.surface, RED, [0,0,SCREEN_WIDTH, SCREEN_HEIGHT], 1)
+
             pygame.display.update()
             time.sleep(self.speed)
-
+            
         self.game_over()
 #        pygame.quit()
 #        sys.exit()
