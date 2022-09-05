@@ -175,8 +175,10 @@ class Game:
                     running = False
             #Collisione fuori limite
             if self.snake.x[0] < 0 or self.snake.x[0] > SCREEN_WIDTH-SIZE:
+                print("Uscita dal limite del campo gioco")
                 running = False
             if self.snake.y[0] < 0 or self.snake.y[0] > SCREEN_HEIGHT-SIZE:
+                print("Uscita dal limite del campo gioco")
                 running = False
 
             #punteggio
