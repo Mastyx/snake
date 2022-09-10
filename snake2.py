@@ -37,9 +37,9 @@ class Snake:
         for i in range(self.length):
             pygame.draw.rect(self.parent_screen, 
                     WHITE, 
-                    [self.x[i], self.y[i], self.block_size, self.block_size],0,6)
+                    [self.x[i], self.y[i], self.block_size, self.block_size],0,2)
             pygame.draw.rect(self.parent_screen, GREEN, 
-                    [self.x[0], self.y[0], self.block_size, self.block_size],0,6) 
+                    [self.x[0], self.y[0], self.block_size, self.block_size],0,2) 
     def move_right(self):
         self.direction = "right"
     def move_left(self):
