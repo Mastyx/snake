@@ -33,6 +33,8 @@ def messaggio (msg, color):
     screen.blit(mess, [10, 10])
         
 
+
+
 while status:
     screen.fill(GREEN)
     for event in pygame.event.get():
@@ -54,9 +56,6 @@ while status:
             if event.key == pygame.K_DOWN:
                 newX = 0
                 newY = 5
-
-            if event.key == pygame.K_m:
-                messaggio("Hai premuto m", RED)
 
 
     posX += newX
